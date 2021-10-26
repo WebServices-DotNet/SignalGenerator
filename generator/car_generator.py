@@ -1,4 +1,5 @@
 import threading
+import time
 from datetime import datetime
 
 from generator.generator_request import GeneratorRequest
@@ -20,7 +21,7 @@ class Car:
 
     def _generate(self):
         self.request.request(self.id, "speed", 1.0)
-        
+
 
 class CarGenerator(threading.Thread):
 
@@ -36,6 +37,7 @@ class CarGenerator(threading.Thread):
                 return
             for car in self.cars:
                 car.tick()
+            time.sleep(0.5)
 
     def stop(self):
         self._stop_event.set()

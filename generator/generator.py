@@ -5,7 +5,7 @@ class GeneratorManager:
 
     def __init__(self):
         self.hz = 0.2
-        self.numberOfCars = 2
+        self.numberOfCars = 30
         self.thread = None
         self._create_cars()
 
@@ -31,15 +31,13 @@ class GeneratorManager:
         self._start_thread()
 
     def _stop(self):
-        self._start_thread()
+        self._stop_thread()
 
     def on_car_number_change(self, value):
-        self.numberOfCars = 2
-        print("change number of cars")
+        self.numberOfCars = value
 
     def on_hz_change(self, value):
-        self.hz = 0.1
-        print("change signal hz")
+        self.hz = value
 
     def on_start(self):
         self._start()
