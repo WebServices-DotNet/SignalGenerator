@@ -32,7 +32,8 @@ class MainPage(GridLayout):
     def _update_state_label(self):
         self.state_label.text = \
             "Running: " + str(self.is_running) + "  |  " + \
-            "Hz: " + f"{self.generator.hz*60.0:.1f}" + " per minute " + "  |  " + \
+            "Hz: " + f"{self.generator.hz*60.0:.1f}" + " per minute (per car)" + "  |  " + \
+            "Hz: " + f"{self.generator.hz * self.generator.numberOfCars:.1f}" + " per seconds (all)" + "  |  " + \
             "Cars: " + f"{self.generator.numberOfCars:.1f}"
 
     def on_car_number_change(self, value):

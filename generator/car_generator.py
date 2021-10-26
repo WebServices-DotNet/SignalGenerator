@@ -6,12 +6,12 @@ from generator.generator_request import GeneratorRequest
 
 
 class Car:
-    def __init__(self, hz, id):
+    def __init__(self, hz, id, request):
         self.id = id
         self.diff_seconds = 1.0 / hz
         self.hz = hz
         self.last_tick = datetime.now()
-        self.request = GeneratorRequest()
+        self.request = request
 
     def tick(self):
         now = datetime.now()
@@ -25,9 +25,9 @@ class Car:
 
 class CarGenerator(threading.Thread):
 
-    def __init__(self, cars):
+    def __init__(self, cars, request):
         threading.Thread.__init__(self)
-        self.cars = [Car(car["hz"], car["id"]) for car in cars]
+        self.cars = [Car(car["hz"], car["id"], request) for car in cars]
         self._stop_event = threading.Event()
         self.thread = None
 
@@ -37,7 +37,7 @@ class CarGenerator(threading.Thread):
                 return
             for car in self.cars:
                 car.tick()
-            time.sleep(0.5)
+            time.sleep(0.1)
 
     def stop(self):
         self._stop_event.set()

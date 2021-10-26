@@ -1,4 +1,5 @@
 from generator.car_generator import CarGenerator
+from generator.generator_request import GeneratorRequest
 
 
 class GeneratorManager:
@@ -8,6 +9,7 @@ class GeneratorManager:
         self.numberOfCars = 30
         self.thread = None
         self._create_cars()
+        self.request = GeneratorRequest()
 
     def _create_cars(self):
         self.cars = []
@@ -22,7 +24,7 @@ class GeneratorManager:
             self.thread.join()
 
     def _start_thread(self):
-        self.thread = CarGenerator(self.cars)
+        self.thread = CarGenerator(self.cars, self.request)
         self.thread.start()
 
     def _start(self):
