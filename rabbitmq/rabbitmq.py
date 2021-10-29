@@ -1,6 +1,7 @@
 
 import pika
 import os
+import json
 
 
 class RabbitMq:
@@ -19,4 +20,4 @@ class RabbitMq:
         self.channel.queue_bind('test_queue', 'test_exchange', 'tests')
 
     def send(self, message):
-        self.channel.basic_publish(exchange='test_exchange', routing_key='tests', body=message)
+        self.channel.basic_publish(exchange='test_exchange', routing_key='tests', body=json.dumps(message))

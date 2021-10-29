@@ -1,8 +1,7 @@
 import threading
 import time
 from datetime import datetime
-
-from generator.generator_request import GeneratorRequest
+import math
 
 
 class Car:
@@ -12,6 +11,8 @@ class Car:
         self.hz = hz
         self.last_tick = datetime.now()
         self.request = request
+        self.x = 0
+        self.amplitude = 1
 
     def tick(self):
         now = datetime.now()
@@ -20,7 +21,8 @@ class Car:
             self._generate()
 
     def _generate(self):
-        self.request.request(self.id, "speed", 1.0)
+        self.x += 0.1
+        self.request.request(self.id, "speed", self.amplitude * math.sin(self.x))
 
 
 class CarGenerator(threading.Thread):

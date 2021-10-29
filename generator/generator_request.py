@@ -10,5 +10,10 @@ class GeneratorRequest:
         self.rabbit_manager.connect()
 
     def request(self, id, signal_name, value):
-        self.logger.log(id, signal_name, value)
-        self.rabbit_manager.send(str(signal_name) + " " + str(value))
+        data = {
+            "id": id,
+            "signal_name": signal_name,
+            "value": value
+        }
+        self.logger.log(data)
+        self.rabbit_manager.send(data)
