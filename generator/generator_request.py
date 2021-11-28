@@ -9,9 +9,10 @@ class GeneratorRequest:
         self.logger = GeneratorLogger()
         self.rabbit_manager.connect()
 
-    def request(self, id, signal_name, value):
+    def request(self, car_id, car_name, signal_name, value):
         data = {
-            "id": id,
+            "car_id": car_id,
+            "car_name": car_name,
             "signal_name": signal_name,
             "value": value
         }

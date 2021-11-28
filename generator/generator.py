@@ -1,5 +1,6 @@
 from generator.car_generator import CarGenerator
 from generator.generator_request import GeneratorRequest
+import uuid
 
 
 class GeneratorManager:
@@ -14,7 +15,7 @@ class GeneratorManager:
     def _create_cars(self):
         self.cars = []
         for i in range(self.numberOfCars):
-            self.cars.append({"hz": self.hz, "id": i + 1})
+            self.cars.append({"hz": self.hz, "id": str(uuid.uuid4())})
 
     def _stop_thread(self):
         if self.thread is None:

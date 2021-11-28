@@ -7,7 +7,7 @@ import json
 class RabbitMq:
 
     def __init__(self):
-        url = os.environ.get('CLOUDAMQP_URL', 'amqps://stmyakko:jsbLtBdO7Y2CVzANgk8sCW4zhpUbxmdA@poodle.rmq2.cloudamqp.com/stmyakko')
+        url = os.environ.get('CLOUDAMQP_URL', 'amqp://guest:guest@localhost:5672')
         self.params = pika.URLParameters(url)
         self.connection = None
         self.channel = None
